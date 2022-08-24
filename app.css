@@ -1,12 +1,14 @@
 .todo {
   font-size: 20px;
   color: rgb(50, 19, 228);
+  font-family: 'Montserrat', sans-serif;
 }
 
 .done {
   font-size: 20px;
   color: rgb(228, 19, 19);
   text-decoration: line-through;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .todo:hover {
@@ -18,10 +20,12 @@
   font-size: 20px;
   color: gray;
   text-decoration: line-through;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #main-heading {
   font-size: 40px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .thumbnail {
