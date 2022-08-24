@@ -1,0 +1,29 @@
+.todo {
+  font-size: 40px;
+  color: rgb(50, 19, 228);
+}
+
+.done {
+  font-size: 40px;
+  color: rgb(228, 19, 19);
+  text-decoration: line-through;
+}
+
+.todo:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: all 200ms;
+}
+
+.completed {
+  font-size: 40px;
+  color: gray;
+  text-decoration: line-through;
+}
+
+#main-heading {
+  font-size: 80px;
+}
+
+.thumbnail {
+  width: 200px;
+}
