@@ -6,7 +6,8 @@ const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
 for (let i = 0; i < savedTodos.length; i++) {
   let newLi = document.createElement("li");
   let newButton = document.createElement("button");
-  newLi.innerText = savedTodos[i].task;
+  let text = savedTodos[i].task;
+  newLi.innerText = text.concat("   ");
   newLi.id = savedTodos[i].ID;;
   newLi.isCompleted = savedTodos[i].isCompleted ? true : false;
   if (newLi.isCompleted) {
@@ -16,7 +17,7 @@ for (let i = 0; i < savedTodos.length; i++) {
     newLi.className = "todo";
   }
   
-  newButton.innerText = "";
+  newButton.innerHTML = "&#10006;";
   newLi.append(newButton);
   todoList.appendChild(newLi);
 }
@@ -28,13 +29,14 @@ form.addEventListener("submit", function(event) {
     const newTodoInput = document.querySelector("#new-todo");
     const newLi = document.createElement("li");
     const newButton = document.createElement("button");
-    newLi.innerText = newTodoInput.value;
+    let text = newTodoInput.value;
+    newLi.innerText = text.concat("   ");
     newLi.className = "todo";
     newLi.id = UI;
-    newButton.innerText = "";
-    newLi.append(newButton);
     todoList.append(newLi);
     savedTodos.push({ ID: UI, task: newLi.innerText, isCompleted: false });
+    newButton.innerHTML = "&#10006;";
+    newLi.append(newButton);
     localStorage.setItem("UI", UI);
     localStorage.setItem("todos", JSON.stringify(savedTodos));
     form.reset();
@@ -64,9 +66,9 @@ form.addEventListener("submit", function(event) {
       let this_id = event.target.id;
       let str_id = this_id.toString();
       let crossIndex = savedTodos.findIndex(x => x.ID == str_id);
-      //obj = savedTodos[crossIndex];
-      savedTodos[crossIndex].isCompleted = true;
-      //console.log(obj);
+      if (crossIndex > -1) { 
+        savedTodos[crossIndex].isCompleted = true;
+      }
       let UI = parseInt(localStorage.getItem("UI"))
       localStorage.clear();
       localStorage.setItem("todos", JSON.stringify(savedTodos));
