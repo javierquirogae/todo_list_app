@@ -12,11 +12,12 @@ for (let i = 0; i < savedTodos.length; i++) {
   newLi.isCompleted = savedTodos[i].isCompleted ? true : false;
   if (newLi.isCompleted) {
     newLi.className = "completed";
+    console.log("complete-crossed")
   }
   else{
     newLi.className = "todo";
+    console.log("not-complete-un-crossed")
   }
-  
   newButton.innerHTML = "&#10006;";
   newLi.append(newButton);
   todoList.appendChild(newLi);
@@ -61,19 +62,84 @@ form.addEventListener("submit", function(event) {
   });
 
   todoList.addEventListener("click", function(event) {
-    if (event.target.textContent) {
-      event.target.className = "completed";
-      let this_id = event.target.id;
-      let str_id = this_id.toString();
-      let crossIndex = savedTodos.findIndex(x => x.ID == str_id);
-      if (crossIndex > -1) { 
-        savedTodos[crossIndex].isCompleted = true;
+    console.log(event);
+    let this_id = 0;
+    let str_id = "";
+    let crossIndex = 0;
+    let unCrossIndex = 0;
+    console.log(`check if complete : ${event.target.isCompleted}`);
+    if (event.target.isCompleted===true){
+      this_id = event.target.id;
+      str_id = this_id.toString();
+      unCrossIndex = savedTodos.findIndex(x => x.ID == str_id);
+      console.log(`un-cross index : ${unCrossIndex}`);
+      if (unCrossIndex > -1){
+        savedTodos[unCrossIndex].isCompleted = false;
+        event.target.className = "completed";
+        event.target.isCompleted = false;
       }
-      let UI = parseInt(localStorage.getItem("UI"))
+      console.log(`complete : ${savedTodos[unCrossIndex].isCompleted}`);
+      UI = parseInt(localStorage.getItem("UI"));
+      //location.reload();
       localStorage.clear();
       localStorage.setItem("todos", JSON.stringify(savedTodos));
       localStorage.setItem("UI", UI);
+      
+      // for (let i = 0; i < savedTodos.length; i++) {
+      //   let newLi = document.createElement("li");
+      //   let newButton = document.createElement("button");
+      //   let text = savedTodos[i].task;
+      //   newLi.innerText = text.concat("   ");
+      //   newLi.id = savedTodos[i].ID;;
+      //   newLi.isCompleted = savedTodos[i].isCompleted ? true : false;
+      //   if (newLi.isCompleted) {
+      //     newLi.className = "completed";
+      //   }
+      //   else{
+      //     newLi.className = "todo";
+      //   }
+      //   newButton.innerHTML = "&#10006;";
+      //   newLi.append(newButton);
+      //   todoList.appendChild(newLi);
+      // }
     }
+    else {
+      this_id = event.target.id;
+      str_id = this_id.toString();
+      crossIndex = savedTodos.findIndex(x => x.ID == str_id);
+      console.log(`cross index : ${crossIndex}`);
+      if (unCrossIndex > -1){
+        savedTodos[crossIndex].isCompleted = true;
+        event.target.className = "todo";
+        event.target.isCompleted = true;
+      }
+      console.log(`complete : ${savedTodos[unCrossIndex].isCompleted}`);
+      UI = parseInt(localStorage.getItem("UI"));
+      ///location.reload();
+      localStorage.clear();
+      localStorage.setItem("todos", JSON.stringify(savedTodos));
+      localStorage.setItem("UI", UI);
+      
+      // for (let i = 0; i < savedTodos.length; i++) {
+      //   let newLi = document.createElement("li");
+      //   let newButton = document.createElement("button");
+      //   let text = savedTodos[i].task;
+      //   newLi.innerText = text.concat("   ");
+      //   newLi.id = savedTodos[i].ID;;
+      //   newLi.isCompleted = savedTodos[i].isCompleted ? true : false;
+      //   if (newLi.isCompleted) {
+      //     newLi.className = "completed";
+      //   }
+      //   else{
+      //     newLi.className = "todo";
+      //   }
+      //   newButton.innerHTML = "&#10006;";
+      //   newLi.append(newButton);
+      //   todoList.appendChild(newLi);
+      // }
+    }
+      
+    
   });
 
  
