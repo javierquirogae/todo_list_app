@@ -68,7 +68,7 @@ form.addEventListener("submit", function(event) {
     let crossIndex = 0;
     let unCrossIndex = 0;
     console.log(`check if complete : ${event.target.isCompleted}`);
-    if (event.target.isCompleted===true){
+    if (event.target.isCompleted){
       this_id = event.target.id;
       str_id = this_id.toString();
       unCrossIndex = savedTodos.findIndex(x => x.ID == str_id);
@@ -76,33 +76,8 @@ form.addEventListener("submit", function(event) {
       if (unCrossIndex > -1){
         savedTodos[unCrossIndex].isCompleted = false;
         event.target.className = "todo";
-        console.log("class = todo");
         event.target.isCompleted = false;
       }
-      console.log(`complete : ${savedTodos[unCrossIndex].isCompleted}`);
-      UI = parseInt(localStorage.getItem("UI"));
-      //location.reload();
-      localStorage.clear();
-      localStorage.setItem("todos", JSON.stringify(savedTodos));
-      localStorage.setItem("UI", UI);
-      
-      // for (let i = 0; i < savedTodos.length; i++) {
-      //   let newLi = document.createElement("li");
-      //   let newButton = document.createElement("button");
-      //   let text = savedTodos[i].task;
-      //   newLi.innerText = text.concat("   ");
-      //   newLi.id = savedTodos[i].ID;;
-      //   newLi.isCompleted = savedTodos[i].isCompleted ? true : false;
-      //   if (newLi.isCompleted) {
-      //     newLi.className = "completed";
-      //   }
-      //   else{
-      //     newLi.className = "todo";
-      //   }
-      //   newButton.innerHTML = "&#10006;";
-      //   newLi.append(newButton);
-      //   todoList.appendChild(newLi);
-      // }
     }
     else {
       this_id = event.target.id;
@@ -114,31 +89,12 @@ form.addEventListener("submit", function(event) {
         event.target.className = "completed";
         event.target.isCompleted = true;
       }
-      console.log(`complete : ${savedTodos[unCrossIndex].isCompleted}`);
-      UI = parseInt(localStorage.getItem("UI"));
-      ///location.reload();
-      localStorage.clear();
-      localStorage.setItem("todos", JSON.stringify(savedTodos));
-      localStorage.setItem("UI", UI);
-      
-      // for (let i = 0; i < savedTodos.length; i++) {
-      //   let newLi = document.createElement("li");
-      //   let newButton = document.createElement("button");
-      //   let text = savedTodos[i].task;
-      //   newLi.innerText = text.concat("   ");
-      //   newLi.id = savedTodos[i].ID;;
-      //   newLi.isCompleted = savedTodos[i].isCompleted ? true : false;
-      //   if (newLi.isCompleted) {
-      //     newLi.className = "completed";
-      //   }
-      //   else{
-      //     newLi.className = "todo";
-      //   }
-      //   newButton.innerHTML = "&#10006;";
-      //   newLi.append(newButton);
-      //   todoList.appendChild(newLi);
-      // }
     }
+    console.log(`complete : ${savedTodos[unCrossIndex].isCompleted}`);
+    UI = parseInt(localStorage.getItem("UI"));
+    localStorage.clear();
+    localStorage.setItem("todos", JSON.stringify(savedTodos));
+    localStorage.setItem("UI", UI);
       
     
   });
