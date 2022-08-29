@@ -75,7 +75,8 @@ form.addEventListener("submit", function(event) {
       console.log(`un-cross index : ${unCrossIndex}`);
       if (unCrossIndex > -1){
         savedTodos[unCrossIndex].isCompleted = false;
-        event.target.className = "completed";
+        event.target.className = "todo";
+        console.log("class = todo");
         event.target.isCompleted = false;
       }
       console.log(`complete : ${savedTodos[unCrossIndex].isCompleted}`);
@@ -110,7 +111,7 @@ form.addEventListener("submit", function(event) {
       console.log(`cross index : ${crossIndex}`);
       if (unCrossIndex > -1){
         savedTodos[crossIndex].isCompleted = true;
-        event.target.className = "todo";
+        event.target.className = "completed";
         event.target.isCompleted = true;
       }
       console.log(`complete : ${savedTodos[unCrossIndex].isCompleted}`);
